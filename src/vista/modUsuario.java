@@ -4,6 +4,9 @@
  */
 package vista;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import modelos.usuario;
 
@@ -103,36 +106,87 @@ public class modUsuario extends javax.swing.JFrame {
 
     private void bttmInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttmInicioActionPerformed
         // TODO add your handling code here:
+                
+        /*
+        try {
+        usuario usuario = new usuario();
+        // Se agregan usuarios para emular una base de datos
+        usuario.guardarUsuario(new usuario("admin","admin"));
         
-                try {
-            usuario usuario = new usuario();
-            // Se agregan usuarios para emular una base de datos
-            usuario.guardarUsuario(new usuario("admin","admin"));
-            
-            // Se setean el nombre el nombre de usuario y la contraseña para verificar que se haya ingresado correctamente los datos
-            usuario.setcodigo(txtCodigo.getText());
-            usuario.setContrasenia(Password.getText());
-            
-            boolean respuesta = usuario.verificarUsuario(usuario.getcodigo(), usuario.getContrasenia());
-            if (respuesta){
-               
-                // JOptionPane.showMessageDialog(null, "¡Bienvenido!");
-                modAdmin MA = new modAdmin();
-                MA.setVisible(true);
-                this.dispose();
-            
-            } else{
-                JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Informacion", JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        // Se setean el nombre el nombre de usuario y la contraseña para verificar que se haya ingresado correctamente los datos
+        usuario.setcodigo(txtCodigo.getText());
+        usuario.setContrasenia(Password.getText());
+        
+        boolean respuesta = usuario.verificarUsuario(usuario.getcodigo(), usuario.getContrasenia());
+        
+        
+        if (respuesta){
+        // JOptionPane.showMessageDialog(null, "¡Bienvenido!");
+        modAdmin MA = new modAdmin();
+        MA.setVisible(true);
+        this.dispose();
+        
+        
+        
+        
+        } else{
+        JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Informacion", JOptionPane.WARNING_MESSAGE);
         }
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }*/ 
 
-        
-        
-        
-        
-        
+    try {
+        usuario usuario = new usuario();
+        // Se agrega el usuario administrador para emular una base de datos
+        usuario.guardarUsuario(new usuario("admin", "admin"));
+
+        // Se setean el nombre de usuario y la contraseña para verificar que se hayan ingresado correctamente los datos
+        usuario.setcodigo(txtCodigo.getText());
+        usuario.setContrasenia(Password.getText());
+
+        boolean esAdmin = usuario.verificarUsuario(usuario.getcodigo(), usuario.getContrasenia());
+        boolean esInvestigador = verificarInvestigador(usuario.getcodigo(), usuario.getContrasenia());
+
+        if (esAdmin) {
+            // Si es admin, redirige al módulo de administrador
+            modAdmin MA = new modAdmin();
+            MA.setVisible(true);
+            this.dispose();
+        } else if (esInvestigador) {
+            // Si es investigador, redirige al módulo de investigador
+            modInves MI = new modInves();
+            MI.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Información", JOptionPane.WARNING_MESSAGE);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+// Método para verificar los datos del investigador en el CSV
+private boolean verificarInvestigador(String codigo, String contrasena) {
+    String archivoCSV = "C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv";  // Ruta al archivo CSV
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSV))) {
+        String linea;
+        while ((linea = reader.readLine()) != null) {
+            String[] datos = linea.split(","); // Asumiendo que los campos están separados por comas
+            String codigoCSV = datos[0];
+            String contrasenaCSV = datos[4]; // Suponiendo que la contraseña está en la 5ta posición
+
+            if (codigo.equals(codigoCSV) && contrasena.equals(contrasenaCSV)) {
+                return true; // El usuario existe y la contraseña es correcta
+            }
+        }
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(null, "Error al leer el archivo de investigadores.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    return false; // El usuario no existe o la contraseña es incorrecta
+
+
     }//GEN-LAST:event_bttmInicioActionPerformed
 
     /**
