@@ -125,9 +125,7 @@ public class modUsuario extends javax.swing.JFrame {
         modAdmin MA = new modAdmin();
         MA.setVisible(true);
         this.dispose();
-        
-        
-        
+          
         
         } else{
         JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Informacion", JOptionPane.WARNING_MESSAGE);
