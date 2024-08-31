@@ -4,6 +4,11 @@
  */
 package vista;
 
+import controlador.ControladorArchivoBinInves;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelos.investigador;
+
 /**
  *
  * @author cardo
@@ -15,8 +20,26 @@ public class modAdmin extends javax.swing.JFrame {
      */
     public modAdmin() {
         initComponents();
+        refrescarTabla();
+    }
+    //metodo para crear investigadores 
+    
+        public void refrescarTabla(){
+        ControladorArchivoBinInves archivoBinario = new ControladorArchivoBinInves();
+        ArrayList<investigador> investigador = archivoBinario.obtenerContenido("investigador.bin");
+        
+        DefaultTableModel tablaModelo = (DefaultTableModel)jTable1.getModel();
+        tablaModelo.setRowCount(0);
+        for (investigador invest : investigador) {
+            tablaModelo.addRow(new Object[]{invest.getCodigo(), invest.getNombre(), invest.getGenero()});
+             System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + ", genero:" + invest.getGenero());
+        }
+        
+        
+        
     }
 
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +57,7 @@ public class modAdmin extends javax.swing.JFrame {
         bttnCargarInv = new javax.swing.JButton();
         bttnActualizarInv = new javax.swing.JButton();
         bttnEliminarInv = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         bttnCrearMu = new javax.swing.JButton();
         bttnCargarMu = new javax.swing.JButton();
@@ -56,7 +80,7 @@ public class modAdmin extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nombre", "Género", "Experimetno"
+                "Código", "Nombre", "Género", "Experimento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -97,40 +121,48 @@ public class modAdmin extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Refrescar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(bttnCrearInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bttnCargarInv))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bttnActualizarInv)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bttnEliminarInv)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(bttnCrearInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bttnActualizarInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttnEliminarInv, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bttnCargarInv, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bttnCrearInv)
                             .addComponent(bttnCargarInv))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bttnActualizarInv)
-                            .addComponent(bttnEliminarInv))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                            .addComponent(bttnEliminarInv))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Investigadores", jPanel1);
@@ -149,7 +181,7 @@ public class modAdmin extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(388, Short.MAX_VALUE)
+                .addContainerGap(488, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bttnCargarMu)
                     .addComponent(bttnCrearMu))
@@ -162,7 +194,7 @@ public class modAdmin extends javax.swing.JFrame {
                 .addComponent(bttnCrearMu)
                 .addGap(30, 30, 30)
                 .addComponent(bttnCargarMu)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Muestras", jPanel2);
@@ -201,7 +233,7 @@ public class modAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(203, 203, 203)
                         .addComponent(bttnAsigExp)))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +248,7 @@ public class modAdmin extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(bttnAsigExp)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Asignacion de Experimentos", jPanel3);
@@ -247,7 +279,7 @@ public class modAdmin extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(358, Short.MAX_VALUE)
+                .addContainerGap(458, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(bttnCrearP)
@@ -267,7 +299,7 @@ public class modAdmin extends javax.swing.JFrame {
                     .addComponent(bttnCargarP))
                 .addGap(18, 18, 18)
                 .addComponent(bttnEliminarP)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Patrones", jPanel4);
@@ -284,19 +316,24 @@ public class modAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bttnCerrarModAdmin)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(452, 452, 452)
+                        .addComponent(bttnCerrarModAdmin)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(bttnCerrarModAdmin)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -313,20 +350,7 @@ public class modAdmin extends javax.swing.JFrame {
         CInv.setLocationRelativeTo(null);
         CInv.setVisible(true);
         
-    
-        
-        /*           void agregarContenido(String contenido, String ruta_archivo){
-        
-        
-        try {
-        FileWriter archivo = new FileWriter(ruta_archivo, true); // En el caso que no exista el archivo lo crea y si ya existe el archivo lo sobreescribe
-        archivo.write(contenido + "\n");
-        archivo.close();
-        System.out.println("Contenido agregado correctamente");
-        } catch (Exception e) {
-        System.out.println(e);
-        }
-        }*/
+   
         
         
         
@@ -410,6 +434,11 @@ public class modAdmin extends javax.swing.JFrame {
         eliminarP.setVisible(true);
     }//GEN-LAST:event_bttnEliminarPActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        refrescarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -457,6 +486,7 @@ public class modAdmin extends javax.swing.JFrame {
     private javax.swing.JButton bttnCrearP;
     private javax.swing.JButton bttnEliminarInv;
     private javax.swing.JButton bttnEliminarP;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

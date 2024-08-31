@@ -4,10 +4,12 @@
  */
 package vista;
 
-/**
- *
- * @author cardo
- */
+import controlador.ControladorArchivoBinInves;
+import javax.swing.JOptionPane;
+import modelos.investigador;
+import vista.modAdmin;
+
+
 public class CrearInves extends javax.swing.JFrame {
 
     /**
@@ -62,6 +64,11 @@ public class CrearInves extends javax.swing.JFrame {
         jLabel5.setText("Crear Investigador");
 
         bttnCrearInves.setText("Crear");
+        bttnCrearInves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCrearInvesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,6 +132,18 @@ public class CrearInves extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void bttnCrearInvesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearInvesActionPerformed
+        // TODO add your handling code here:
+        
+        ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
+        archivo.agregarContenido("investigador.bin", new investigador(txtCod.getText(), txtNombre.getText(), txtGenero.getText(), txtContra.getText()));
+        JOptionPane.showMessageDialog(null, "Investigador registrado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        txtCod.setText("");
+        txtNombre.setText("");
+        txtGenero.setText("");
+        txtContra.setText("");
+    }//GEN-LAST:event_bttnCrearInvesActionPerformed
 
     /**
      * @param args the command line arguments

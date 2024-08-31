@@ -105,35 +105,8 @@ public class modUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordActionPerformed
 
     private void bttmInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttmInicioActionPerformed
-        // TODO add your handling code here:
+        // este boton verifica si es el usuario admin, o alguno de los usuarios del csv
                 
-        /*
-        try {
-        usuario usuario = new usuario();
-        // Se agregan usuarios para emular una base de datos
-        usuario.guardarUsuario(new usuario("admin","admin"));
-        
-        // Se setean el nombre el nombre de usuario y la contraseña para verificar que se haya ingresado correctamente los datos
-        usuario.setcodigo(txtCodigo.getText());
-        usuario.setContrasenia(Password.getText());
-        
-        boolean respuesta = usuario.verificarUsuario(usuario.getcodigo(), usuario.getContrasenia());
-        
-        
-        if (respuesta){
-        // JOptionPane.showMessageDialog(null, "¡Bienvenido!");
-        modAdmin MA = new modAdmin();
-        MA.setVisible(true);
-        this.dispose();
-          
-        
-        } else{
-        JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Informacion", JOptionPane.WARNING_MESSAGE);
-        }
-        } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }*/ 
-
     try {
         usuario usuario = new usuario();
         // Se agrega el usuario administrador para emular una base de datos
