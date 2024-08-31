@@ -30,23 +30,24 @@ public class modAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        bttnCrearInv = new javax.swing.JButton();
+        bttnCargarInv = new javax.swing.JButton();
+        bttnActualizarInv = new javax.swing.JButton();
+        bttnEliminarInv = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        bttnCrearMu = new javax.swing.JButton();
+        bttnCargarMu = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
+        bttnAsigExp = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        bttnCrearP = new javax.swing.JButton();
+        bttnCargarP = new javax.swing.JButton();
+        bttnEliminarP = new javax.swing.JButton();
+        bttnCerrarModAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,31 +69,31 @@ public class modAdmin extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bttnCrearInv.setText("Crear");
+        bttnCrearInv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bttnCrearInvActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cargar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bttnCargarInv.setText("Cargar");
+        bttnCargarInv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bttnCargarInvActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Actualizar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bttnActualizarInv.setText("Actualizar");
+        bttnActualizarInv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bttnActualizarInvActionPerformed(evt);
             }
         });
 
-        jButton4.setText(" Eliminar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        bttnEliminarInv.setText(" Eliminar");
+        bttnEliminarInv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                bttnEliminarInvActionPerformed(evt);
             }
         });
 
@@ -106,13 +107,13 @@ public class modAdmin extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bttnCrearInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(bttnCargarInv))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(bttnActualizarInv)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(bttnEliminarInv)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,25 +124,25 @@ public class modAdmin extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(bttnCrearInv)
+                            .addComponent(bttnCargarInv))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))))
+                            .addComponent(bttnActualizarInv)
+                            .addComponent(bttnEliminarInv))))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Investigadores", jPanel1);
 
-        jButton5.setText("Crear");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        bttnCrearMu.setText("Crear");
+        bttnCrearMu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                bttnCrearMuActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Cargar");
+        bttnCargarMu.setText("Cargar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,17 +151,17 @@ public class modAdmin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(388, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5))
+                    .addComponent(bttnCargarMu)
+                    .addComponent(bttnCrearMu))
                 .addGap(75, 75, 75))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton5)
+                .addComponent(bttnCrearMu)
                 .addGap(30, 30, 30)
-                .addComponent(jButton6)
+                .addComponent(bttnCargarMu)
                 .addContainerGap(125, Short.MAX_VALUE))
         );
 
@@ -179,7 +180,7 @@ public class modAdmin extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton7.setText("Asignar");
+        bttnAsigExp.setText("Asignar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -199,7 +200,7 @@ public class modAdmin extends javax.swing.JFrame {
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(203, 203, 203)
-                        .addComponent(jButton7)))
+                        .addComponent(bttnAsigExp)))
                 .addContainerGap(237, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -214,17 +215,32 @@ public class modAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jButton7)
+                .addComponent(bttnAsigExp)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Asignacion de Experimentos", jPanel3);
 
-        jButton8.setText("Crear");
+        bttnCrearP.setText("Crear");
+        bttnCrearP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCrearPActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText("Cargar");
+        bttnCargarP.setText("Cargar");
+        bttnCargarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCargarPActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("Eliminar");
+        bttnEliminarP.setText("Eliminar");
+        bttnEliminarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnEliminarPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -234,12 +250,12 @@ public class modAdmin extends javax.swing.JFrame {
                 .addContainerGap(358, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton8)
+                        .addComponent(bttnCrearP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9)
+                        .addComponent(bttnCargarP)
                         .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton10)
+                        .addComponent(bttnEliminarP)
                         .addGap(64, 64, 64))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -247,14 +263,21 @@ public class modAdmin extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(bttnCrearP)
+                    .addComponent(bttnCargarP))
                 .addGap(18, 18, 18)
-                .addComponent(jButton10)
+                .addComponent(bttnEliminarP)
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Patrones", jPanel4);
+
+        bttnCerrarModAdmin.setText("Cerrar sesión");
+        bttnCerrarModAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCerrarModAdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,15 +285,18 @@ public class modAdmin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bttnCerrarModAdmin)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(bttnCerrarModAdmin)
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -280,15 +306,14 @@ public class modAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bttnCrearInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearInvActionPerformed
         // TODO add your handling code here:
         
         CrearInves CInv = new CrearInves();
+        CInv.setLocationRelativeTo(null);
         CInv.setVisible(true);
-        this.dispose();
         
-        
-        
+    
         
         /*           void agregarContenido(String contenido, String ruta_archivo){
         
@@ -312,40 +337,78 @@ public class modAdmin extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bttnCrearInvActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void bttnCargarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCargarInvActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bttnCargarInvActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void bttnEliminarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarInvActionPerformed
         // TODO add your handling code here:
         
         eliminarInves EliInv = new eliminarInves();
+        EliInv.setLocationRelativeTo(null);
         EliInv.setVisible(true);
-        this.dispose();
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+    }//GEN-LAST:event_bttnEliminarInvActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bttnActualizarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnActualizarInvActionPerformed
         // TODO add your handling code here:
         
         actualizarInves AcInves = new actualizarInves();
+        AcInves.setLocationRelativeTo(null);
         AcInves.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_bttnActualizarInvActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void bttnCrearMuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearMuActionPerformed
         // TODO add your handling code here:
         
         crearMuestra CrearM = new  crearMuestra();
+        CrearM.setLocationRelativeTo(null);
         CrearM.setVisible(true);
+        
+                
+                
+        
+        
+    }//GEN-LAST:event_bttnCrearMuActionPerformed
+
+    private void bttnCerrarModAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCerrarModAdminActionPerformed
+        // TODO add your handling code here:
+        
+        modUsuario MUsu = new modUsuario();
+        MUsu.setVisible(true);
         this.dispose();
-                
-                
+    }//GEN-LAST:event_bttnCerrarModAdminActionPerformed
+
+    private void bttnCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearPActionPerformed
+        // TODO add your handling code here:
         
+        crearPatron creaP = new crearPatron();
+        creaP.setLocationRelativeTo(null);
+        creaP.setVisible(true);
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+
+    }//GEN-LAST:event_bttnCrearPActionPerformed
+
+    private void bttnCargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCargarPActionPerformed
+        // TODO add your handling code here:
+        
+
+        
+    }//GEN-LAST:event_bttnCargarPActionPerformed
+
+    private void bttnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarPActionPerformed
+        // TODO add your handling code here:
+        
+        eliminarPatron eliminarP = new eliminarPatron();
+        eliminarP.setLocationRelativeTo(null);
+        eliminarP.setVisible(true);
+    }//GEN-LAST:event_bttnEliminarPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,16 +446,17 @@ public class modAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton bttnActualizarInv;
+    private javax.swing.JButton bttnAsigExp;
+    private javax.swing.JButton bttnCargarInv;
+    private javax.swing.JButton bttnCargarMu;
+    private javax.swing.JButton bttnCargarP;
+    private javax.swing.JButton bttnCerrarModAdmin;
+    private javax.swing.JButton bttnCrearInv;
+    private javax.swing.JButton bttnCrearMu;
+    private javax.swing.JButton bttnCrearP;
+    private javax.swing.JButton bttnEliminarInv;
+    private javax.swing.JButton bttnEliminarP;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

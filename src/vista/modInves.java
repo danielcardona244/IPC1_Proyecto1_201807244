@@ -36,7 +36,7 @@ public class modInves extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bttnCerrarModInves = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,10 +113,10 @@ public class modInves extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Resultados", jPanel2);
 
-        jButton1.setText("Cerrar sesión");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bttnCerrarModInves.setText("Cerrar sesión");
+        bttnCerrarModInves.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bttnCerrarModInvesActionPerformed(evt);
             }
         });
 
@@ -127,7 +127,7 @@ public class modInves extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(bttnCerrarModInves)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(203, Short.MAX_VALUE))
         );
@@ -135,7 +135,7 @@ public class modInves extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(bttnCerrarModInves)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
@@ -144,10 +144,12 @@ public class modInves extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bttnCerrarModInvesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCerrarModInvesActionPerformed
         // TODO add your handling code here:
+        modUsuario MUsu = new modUsuario();
+        MUsu.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bttnCerrarModInvesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +187,7 @@ public class modInves extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bttnCerrarModInves;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
