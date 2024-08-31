@@ -4,6 +4,9 @@
  */
 package vista;
 
+import controlador.ControladorArchivoBinInves;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cardo
@@ -28,7 +31,7 @@ public class eliminarInves extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCod = new javax.swing.JTextField();
         bttnEliminarInves = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -38,6 +41,11 @@ public class eliminarInves extends javax.swing.JFrame {
         jLabel2.setText("Código");
 
         bttnEliminarInves.setText("Eliminar");
+        bttnEliminarInves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnEliminarInvesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,7 +62,7 @@ public class eliminarInves extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bttnEliminarInves)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -65,7 +73,7 @@ public class eliminarInves extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(bttnEliminarInves)
                 .addContainerGap(63, Short.MAX_VALUE))
@@ -73,6 +81,15 @@ public class eliminarInves extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttnEliminarInvesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarInvesActionPerformed
+        // TODO add your handling code here:
+        
+        ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
+        archivo.eliminarContenido("investigador.bin", txtCod.getText());
+        JOptionPane.showMessageDialog(null, "Investigador eliminado correctamente");
+        txtCod.setText("");
+    }//GEN-LAST:event_bttnEliminarInvesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,6 +130,6 @@ public class eliminarInves extends javax.swing.JFrame {
     private javax.swing.JButton bttnEliminarInves;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtCod;
     // End of variables declaration//GEN-END:variables
 }

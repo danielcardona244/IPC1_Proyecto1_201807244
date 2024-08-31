@@ -39,5 +39,28 @@ public class investigador implements Serializable{
     public String getContrasena() {
         return Contrasena;
     }
+
+    public void setAgregarInves(ArrayList<investigador> agregarInves) {
+        this.agregarInves = agregarInves;
+    }
+
+    public void setCodigo(String Codigo) {
+        this.Codigo = Codigo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void setContrasena(String Contrasena) {
+        this.Contrasena = Contrasena;
+    }
+
+
+    
 }
 

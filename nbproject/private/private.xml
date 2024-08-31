@@ -12,16 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/crearMuestra.java</file>
             <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/modelos/investigador.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/modUsuario.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/controlador/controladorInicio.java</file>
             <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/controlador/ControladorArchivoBinInves.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/modelos/admin.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/CrearInves.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/modAdmin.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/modelos/usuario.java</file>
             <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/actualizarInves.java</file>
+            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/eliminarInves.java</file>
         </group>
     </open-files>
 </project-private>

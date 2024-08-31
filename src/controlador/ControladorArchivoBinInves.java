@@ -16,7 +16,7 @@ public class ControladorArchivoBinInves {
     
     
     
-        public void agregarContenido(String ruta_archivo, investigador inves){
+    public void agregarContenido(String ruta_archivo, investigador inves){
         try {
             // Se obtiene el listado de investigador
             List<investigador> listadoinves = this.obtenerContenido(ruta_archivo);
@@ -31,7 +31,52 @@ public class ControladorArchivoBinInves {
             System.out.println("Error al agregar contenido: " + e.getMessage());
         }  
     }
+        
+        
+    public void modificarContenido(String ruta_archivo, String codigo, investigador investigadorModMetod){
+        try {
+            // Se obtiene el listado de investigador
+            List<investigador> listado_investigador = this.obtenerContenido(ruta_archivo);
+            
+            for (investigador invest : listado_investigador) {
+                if (invest.getCodigo().equals(codigo)) {
+                    invest.setNombre(investigadorModMetod.getNombre());
+                    invest.setGenero(investigadorModMetod.getGenero());
+                    invest.setContrasena(investigadorModMetod.getContrasena()); 
+                }
+            }
+
+            FileOutputStream salidaArchivo = new FileOutputStream(ruta_archivo);
+            ObjectOutputStream salidaObjeto = new ObjectOutputStream(salidaArchivo);
+            salidaObjeto.writeObject(listado_investigador);
+            salidaArchivo.close();
+            salidaObjeto.close();
+        } catch (Exception e) {
+            System.out.println("Error al agregar contenido: " + e.getMessage());
+        }  
+    }
     
+    public void eliminarContenido(String ruta_archivo, String codigo){
+        try {
+            // Se obtiene el listado de investigador
+            List<investigador> listado_investigador = this.obtenerContenido(ruta_archivo);
+            
+            for (int i = 0; i < listado_investigador.size(); i++) {
+                if (listado_investigador.get(i).getCodigo().equals(codigo)) {
+                    listado_investigador.remove(i);
+                }
+            }
+
+            FileOutputStream salidaArchivo = new FileOutputStream(ruta_archivo);
+            ObjectOutputStream salidaObjeto = new ObjectOutputStream(salidaArchivo);
+            salidaObjeto.writeObject(listado_investigador);
+            salidaArchivo.close();
+            salidaObjeto.close();
+        } catch (Exception e) {
+            System.out.println("Error al agregar contenido: " + e.getMessage());
+        }  
+    }        
+       
     public ArrayList<investigador> obtenerContenido(String ruta_archivo){
         ArrayList<investigador> respuesta = new ArrayList<>();
         try {
@@ -47,6 +92,9 @@ public class ControladorArchivoBinInves {
         }
         return respuesta;
     }
+    
+    
+     
     
     
 }
