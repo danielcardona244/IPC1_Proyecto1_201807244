@@ -174,7 +174,7 @@ public class actualizarInves extends javax.swing.JFrame {
     private void bttnActInvesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnActInvesActionPerformed
         // TODO add your handling code here:
         
-         ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
+        ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
         archivo.modificarContenido("investigador.bin", txtCod.getText(), new investigador(txtCod.getText(), txtNombre.getText(), txtGenero.getText(), txtContra.getText()));
         JOptionPane.showMessageDialog(null, "Investigador modificado correctamente");
         txtCod.setText("");

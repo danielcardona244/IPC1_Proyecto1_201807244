@@ -107,34 +107,34 @@ public class modUsuario extends javax.swing.JFrame {
     private void bttmInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttmInicioActionPerformed
         // este boton verifica si es el usuario admin, o alguno de los usuarios del csv
                 
-    try {
+        try {
         usuario usuario = new usuario();
         // Se agrega el usuario administrador para emular una base de datos
         usuario.guardarUsuario(new usuario("admin", "admin"));
-
+        
         // Se setean el nombre de usuario y la contraseña para verificar que se hayan ingresado correctamente los datos
         usuario.setcodigo(txtCodigo.getText());
         usuario.setContrasenia(Password.getText());
-
+        
         boolean esAdmin = usuario.verificarUsuario(usuario.getcodigo(), usuario.getContrasenia());
         boolean esInvestigador = verificarInvestigador(usuario.getcodigo(), usuario.getContrasenia());
-
+        
         if (esAdmin) {
-            // Si es admin, redirige al módulo de administrador
-            modAdmin MA = new modAdmin();
-            MA.setVisible(true);
-            this.dispose();
+        // Si es admin, redirige al módulo de administrador
+        modAdmin MA = new modAdmin();
+        MA.setVisible(true);
+        this.dispose();
         } else if (esInvestigador) {
-            // Si es investigador, redirige al módulo de investigador
-            modInves MI = new modInves();
-            MI.setVisible(true);
-            this.dispose();
+        // Si es investigador, redirige al módulo de investigador
+        modInves MI = new modInves();
+        MI.setVisible(true);
+        this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Información", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Información", JOptionPane.WARNING_MESSAGE);
         }
-    } catch (Exception e) {
+        } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        }
 }
 
 // Método para verificar los datos del investigador en el CSV
@@ -144,9 +144,9 @@ private boolean verificarInvestigador(String codigo, String contrasena) {
     try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSV))) {
         String linea;
         while ((linea = reader.readLine()) != null) {
-            String[] datos = linea.split(","); // Asumiendo que los campos están separados por comas
+            String[] datos = linea.split(","); 
             String codigoCSV = datos[0];
-            String contrasenaCSV = datos[4]; // Suponiendo que la contraseña está en la 5ta posición
+            String contrasenaCSV = datos[4]; 
 
             if (codigo.equals(codigoCSV) && contrasena.equals(contrasenaCSV)) {
                 return true; // El usuario existe y la contraseña es correcta

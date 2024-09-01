@@ -5,9 +5,13 @@
 package vista;
 
 import controlador.ControladorArchivoBinInves;
+import controlador.ControladorArchivoCsvMues;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import modelos.investigador;
+import modelos.muestras;
 
 /**
  *
@@ -21,23 +25,51 @@ public class modAdmin extends javax.swing.JFrame {
     public modAdmin() {
         initComponents();
         refrescarTabla();
+        refrescarTabla2();
+        
+        /*        TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
+        columnaAcciones.setCellRenderer(new RenderBttnVerMues());
+        columnaAcciones.setCellEditor(new RenderBttnVerMues());
+        //hay que cambiar el object data por el csv que se tiene que leer
+        ControladorArchivoCsvMues archivoCsvMues = new ControladorArchivoCsvMues();
+        ArrayList<muestras> muestras = archivoCsvMues.obtenerContenidoMues("C:\\Users\\cardo\\OneDrive\\Escritorio\\muestrascsv.csv");
+        
+        DefaultTableModel tablaModeloMues = (DefaultTableModel)jTable2.getModel();
+        tablaModeloMues.setRowCount(0);
+        for (muestras mues : muestras) {
+        tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado()});
+        }*/
     }
-    //metodo para crear investigadores 
+    //metodo para crear investigadores y para resfrescar la tabla
     
         public void refrescarTabla(){
-        ControladorArchivoBinInves archivoBinario = new ControladorArchivoBinInves();
-        ArrayList<investigador> investigador = archivoBinario.obtenerContenido("investigador.bin");
-        
-        DefaultTableModel tablaModelo = (DefaultTableModel)jTable1.getModel();
-        tablaModelo.setRowCount(0);
-        for (investigador invest : investigador) {
-            tablaModelo.addRow(new Object[]{invest.getCodigo(), invest.getNombre(), invest.getGenero()});
-             System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + ", genero:" + invest.getGenero());
+            ControladorArchivoBinInves archivoBinario = new ControladorArchivoBinInves();
+            ArrayList<investigador> investigador = archivoBinario.obtenerContenido("investigador.bin");
+
+            DefaultTableModel tablaModelo = (DefaultTableModel)jTable1.getModel();
+            tablaModelo.setRowCount(0);
+            for (investigador invest : investigador) {
+                tablaModelo.addRow(new Object[]{invest.getCodigo(), invest.getNombre(), invest.getGenero()});
+                System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + ", genero:" + invest.getGenero());
+            }  
         }
         
-        
-        
-    }
+        public void refrescarTabla2() {
+            ControladorArchivoCsvMues archivoCsvMues = new ControladorArchivoCsvMues();
+            ArrayList<muestras> muestras = archivoCsvMues.obtenerContenidoMues("C:\\Users\\cardo\\OneDrive\\Escritorio\\muestrascsv.csv");
+
+            DefaultTableModel tablaModeloMues = (DefaultTableModel) jTable2.getModel();
+            tablaModeloMues.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
+
+            for (muestras mues : muestras) {
+                tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "Ver"});
+            }
+
+            // Asegúrate de asignar el renderizador y el editor después de llenar los datos
+            TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
+            columnaAcciones.setCellRenderer(new RenderBttnVerMues());
+            columnaAcciones.setCellEditor(new RenderBttnVerMues());
+        }
 
         
     /**
@@ -61,6 +93,9 @@ public class modAdmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         bttnCrearMu = new javax.swing.JButton();
         bttnCargarMu = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -140,11 +175,11 @@ public class modAdmin extends javax.swing.JFrame {
                     .addComponent(bttnCrearInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bttnActualizarInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bttnEliminarInv, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bttnCargarInv, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(29, 29, 29))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bttnEliminarInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bttnCargarInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,25 +211,59 @@ public class modAdmin extends javax.swing.JFrame {
 
         bttnCargarMu.setText("Cargar");
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Descripción", "Estado", "Acciones"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jButton2.setText("refrescar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(488, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bttnCargarMu)
-                    .addComponent(bttnCrearMu))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(bttnCrearMu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bttnCargarMu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(75, 75, 75))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(bttnCrearMu)
-                .addGap(30, 30, 30)
-                .addComponent(bttnCargarMu)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(bttnCrearMu)
+                        .addGap(30, 30, 30)
+                        .addComponent(bttnCargarMu)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton2)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Muestras", jPanel2);
@@ -316,24 +385,22 @@ public class modAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(452, 452, 452)
+                        .addGap(446, 446, 446)
                         .addComponent(bttnCerrarModAdmin)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(40, 40, 40)
                 .addComponent(bttnCerrarModAdmin)
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         pack();
@@ -365,6 +432,15 @@ public class modAdmin extends javax.swing.JFrame {
 
     private void bttnCargarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCargarInvActionPerformed
         // TODO add your handling code here:
+        
+        ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
+        archivo.leerCSV("investigador.bin");
+        JOptionPane.showMessageDialog(null, "Investigadores cargados correctanebte");
+        
+        
+        
+        
+        
     }//GEN-LAST:event_bttnCargarInvActionPerformed
 
     private void bttnEliminarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarInvActionPerformed
@@ -439,6 +515,11 @@ public class modAdmin extends javax.swing.JFrame {
         refrescarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        refrescarTabla2();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -487,6 +568,7 @@ public class modAdmin extends javax.swing.JFrame {
     private javax.swing.JButton bttnEliminarInv;
     private javax.swing.JButton bttnEliminarP;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -496,7 +578,9 @@ public class modAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

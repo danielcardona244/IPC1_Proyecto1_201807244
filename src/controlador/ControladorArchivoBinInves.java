@@ -1,9 +1,11 @@
 
 package controlador;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -94,7 +96,29 @@ public class ControladorArchivoBinInves {
     }
     
     
-     
+    public void leerCSV(String ruta_archivo){
+        try {
+            BufferedReader lector = new BufferedReader(new FileReader("C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv")); //ruta del archivo de texto plano a leer
+            String linea;
+            lector.readLine();
+            ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
+            while ((linea = lector.readLine()) != null) {              
+                String[] contenido = linea.split(",");
+                System.out.println("Codigo: " + contenido[0]);
+                System.out.println("Nombre: " + contenido[1]);
+                System.out.println("Genero: " + contenido[2]);
+                System.out.println("Experimientos: " + contenido[3]);
+                System.out.println("Contrasenia: " + contenido[4]);
+            
+                archivo.agregarContenido("investigador.bin", new investigador(contenido[0],contenido[1],contenido[2],contenido[3])); //ruta del .bin donde se guardara lo leido del csv
+            }
+            lector.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+   
+    
     
     
 }
