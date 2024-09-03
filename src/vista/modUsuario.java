@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.controladorInicio;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -107,7 +108,7 @@ public class modUsuario extends javax.swing.JFrame {
     private void bttmInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttmInicioActionPerformed
         // este boton verifica si es el usuario admin, o alguno de los usuarios del csv
                 
-        try {
+        /*try {
         usuario usuario = new usuario();
         // Se agrega el usuario administrador para emular una base de datos
         usuario.guardarUsuario(new usuario("admin", "admin"));
@@ -135,28 +136,33 @@ public class modUsuario extends javax.swing.JFrame {
         } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-}
-
-// Método para verificar los datos del investigador en el CSV
-private boolean verificarInvestigador(String codigo, String contrasena) {
-    String archivoCSV = "C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv";  // Ruta al archivo CSV
-
-    try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSV))) {
+        }
+        
+        // Método para verificar los datos del investigador en el CSV
+        private boolean verificarInvestigador(String codigo, String contrasena) {
+        String archivoCSV = "C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv";  // Ruta al archivo CSV
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivoCSV))) {
         String linea;
         while ((linea = reader.readLine()) != null) {
-            String[] datos = linea.split(","); 
-            String codigoCSV = datos[0];
-            String contrasenaCSV = datos[4]; 
-
-            if (codigo.equals(codigoCSV) && contrasena.equals(contrasenaCSV)) {
-                return true; // El usuario existe y la contraseña es correcta
-            }
+        String[] datos = linea.split(",");
+        String codigoCSV = datos[0];
+        String contrasenaCSV = datos[4];
+        
+        if (codigo.equals(codigoCSV) && contrasena.equals(contrasenaCSV)) {
+        return true; // El usuario existe y la contraseña es correcta
         }
-    } catch (IOException e) {
+        }
+        } catch (IOException e) {
         JOptionPane.showMessageDialog(null, "Error al leer el archivo de investigadores.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    return false; // El usuario no existe o la contraseña es incorrecta
+        }
+        return false; // El usuario no existe o la contraseña es incorrecta*/
+        
+    String codigo = txtCodigo.getText();
+    String contrasena = Password.getText();
 
+    controladorInicio controladorInicio = new controladorInicio();
+    controladorInicio.iniciarSesion(codigo, contrasena);
 
     }//GEN-LAST:event_bttmInicioActionPerformed
 

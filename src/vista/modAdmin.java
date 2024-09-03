@@ -6,12 +6,16 @@ package vista;
 
 import controlador.ControladorArchivoBinInves;
 import controlador.ControladorArchivoCsvMues;
+import controlador.ControladorArchivoCsvPatron;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
 import modelos.investigador;
 import modelos.muestras;
+import modelos.patrones;
 
 /**
  *
@@ -26,21 +30,10 @@ public class modAdmin extends javax.swing.JFrame {
         initComponents();
         refrescarTabla();
         refrescarTabla2();
+        refrescarTablaPatrones();
         
-        /*        TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
-        columnaAcciones.setCellRenderer(new RenderBttnVerMues());
-        columnaAcciones.setCellEditor(new RenderBttnVerMues());
-        //hay que cambiar el object data por el csv que se tiene que leer
-        ControladorArchivoCsvMues archivoCsvMues = new ControladorArchivoCsvMues();
-        ArrayList<muestras> muestras = archivoCsvMues.obtenerContenidoMues("C:\\Users\\cardo\\OneDrive\\Escritorio\\muestrascsv.csv");
-        
-        DefaultTableModel tablaModeloMues = (DefaultTableModel)jTable2.getModel();
-        tablaModeloMues.setRowCount(0);
-        for (muestras mues : muestras) {
-        tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado()});
-        }*/
     }
-    //metodo para crear investigadores y para resfrescar la tabla
+    //metodo para crear investigadores y para resfrescar la tabla de investigadores
     
         public void refrescarTabla(){
             ControladorArchivoBinInves archivoBinario = new ControladorArchivoBinInves();
@@ -53,6 +46,8 @@ public class modAdmin extends javax.swing.JFrame {
                 System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + ", genero:" + invest.getGenero());
             }  
         }
+    
+    //metodo para refrescar la tabla de muestras
         
         public void refrescarTabla2() {
             ControladorArchivoCsvMues archivoCsvMues = new ControladorArchivoCsvMues();
@@ -70,6 +65,29 @@ public class modAdmin extends javax.swing.JFrame {
             columnaAcciones.setCellRenderer(new RenderBttnVerMues());
             columnaAcciones.setCellEditor(new RenderBttnVerMues());
         }
+        
+        
+    // Método para refrescar la tabla de patrones
+        
+        public void refrescarTablaPatrones() {
+            ControladorArchivoCsvPatron archivoCsvPatrones = new ControladorArchivoCsvPatron();
+            ArrayList<patrones> patrones = archivoCsvPatrones.obtenerContenidoPatrones("C:\\Users\\cardo\\OneDrive\\Escritorio\\patronescsv.csv");
+
+            DefaultTableModel tablaModelo = (DefaultTableModel) jTable3.getModel();
+            tablaModelo.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
+
+            for (patrones patron : patrones) {
+            tablaModelo.addRow(new Object[]{patron.getCodigo(), patron.getNombre(), "Ver"});
+            }
+
+            // Asegúrate de asignar el renderizador y el editor después de llenar los datos
+            TableColumn columnaAcciones = jTable3.getColumnModel().getColumn(2);
+            columnaAcciones.setCellRenderer(new RenderBttnVerPatron());
+            columnaAcciones.setCellEditor(new RenderBttnVerPatron());
+        }
+        
+  
+
 
         
     /**
@@ -106,6 +124,9 @@ public class modAdmin extends javax.swing.JFrame {
         bttnCrearP = new javax.swing.JButton();
         bttnCargarP = new javax.swing.JButton();
         bttnEliminarP = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         bttnCerrarModAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -290,34 +311,33 @@ public class modAdmin extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(120, 120, 120)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(125, 125, 125)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(80, 80, 80)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
+                        .addGap(221, 221, 221)
                         .addComponent(bttnAsigExp)))
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(38, 38, 38)
                 .addComponent(bttnAsigExp)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Asignacion de Experimentos", jPanel3);
@@ -343,32 +363,66 @@ public class modAdmin extends javax.swing.JFrame {
             }
         });
 
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre", "Acciones"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        jButton3.setText("refrescar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(458, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bttnCrearP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(bttnCrearP)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bttnCargarP)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(bttnEliminarP)
-                        .addGap(64, 64, 64))))
+                        .addComponent(bttnCargarP))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(bttnEliminarP)))
+                .addGap(21, 21, 21))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttnCrearP)
-                    .addComponent(bttnCargarP))
-                .addGap(18, 18, 18)
-                .addComponent(bttnEliminarP)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bttnCrearP)
+                            .addComponent(bttnCargarP))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bttnEliminarP)
+                            .addComponent(jButton3))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Patrones", jPanel4);
@@ -520,6 +574,11 @@ public class modAdmin extends javax.swing.JFrame {
         refrescarTabla2();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        refrescarTablaPatrones();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -569,6 +628,7 @@ public class modAdmin extends javax.swing.JFrame {
     private javax.swing.JButton bttnEliminarP;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -579,8 +639,10 @@ public class modAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }

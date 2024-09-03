@@ -88,6 +88,8 @@ public class ControladorArchivoBinInves {
                 FileInputStream entradaArchivo = new FileInputStream(ruta_archivo);
                 ObjectInputStream entradaObjeto = new ObjectInputStream(entradaArchivo);
                 respuesta = (ArrayList<investigador>)entradaObjeto.readObject();
+                entradaArchivo.close();
+                entradaObjeto.close();
             }            
         } catch (Exception e) {
             System.out.println("Error al obtener el contenido: " + e.getMessage());
@@ -118,6 +120,22 @@ public class ControladorArchivoBinInves {
         }
     }
    
+ 
+
+    public investigador buscarInvestigador(String codigo, String contrasena, String ruta_archivo) {
+            ArrayList<investigador> investigadores = obtenerContenido(ruta_archivo);
+            for (investigador inv : investigadores) {
+                if (inv.getCodigo().equals(codigo) && inv.getContrasena().equals(contrasena)) {
+                    return inv; // Devuelve el investigador si lo encuentra
+                }
+            }
+            return null; // Si no encuentra al investigador
+    }
+    
+    
+    
+    
+    
     
     
     

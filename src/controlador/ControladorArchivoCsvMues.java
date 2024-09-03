@@ -17,7 +17,7 @@ public class ControladorArchivoCsvMues {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 3) {  // Verificar que tenga 3 columnas
+                if (datos.length == 3) {  
                     muestras mues = new muestras(datos[0], datos[1], datos[2]);
                     respuesta.add(mues);
                 }
