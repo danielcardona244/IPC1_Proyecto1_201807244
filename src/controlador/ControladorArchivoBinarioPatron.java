@@ -9,7 +9,7 @@ public class ControladorArchivoBinarioPatron {
 
     
     
-    // Método para verificar si el código ya existe
+    // metodo para verificar si el código ya existe
     public boolean codigoExiste(String rutaArchivo, String codigo) {
         ArrayList<patrones> patrones = obtenerContenidoPatrones(rutaArchivo);
         for (patrones patron : patrones) {
@@ -21,7 +21,7 @@ public class ControladorArchivoBinarioPatron {
     }
     
     
-    
+    //metodo para agregar patrones
     public void agregarContenidoPatrones(String rutaArchivo, patrones patr) {
         List<patrones> listadoPatrones = obtenerContenidoPatrones(rutaArchivo);
         listadoPatrones.add(patr);
@@ -33,6 +33,7 @@ public class ControladorArchivoBinarioPatron {
         }
     }
 
+    //metodo para eliminar patrones
     public void eliminarPatron(String rutaArchivo, String codigo) {
         List<patrones> listadoPatrones = obtenerContenidoPatrones(rutaArchivo);
         listadoPatrones.removeIf(patron -> patron.getCodigo().equals(codigo));
@@ -44,6 +45,7 @@ public class ControladorArchivoBinarioPatron {
         }
     }
 
+    // metodo para obtener el contenido de los archivos
     @SuppressWarnings("unchecked") //para que no me genere advertencias
     public ArrayList<patrones> obtenerContenidoPatrones(String rutaArchivo) {
         ArrayList<patrones> patrones = new ArrayList<>();
@@ -60,8 +62,8 @@ public class ControladorArchivoBinarioPatron {
     }
     
     
-    
-        public void leerCSV(String ruta_archivo){
+    //metodo para leer los patrones en los archivos csv
+    public void leerCSV(String ruta_archivo){
         try {
             BufferedReader lector = new BufferedReader(new FileReader("C:\\Users\\cardo\\OneDrive\\Escritorio\\patronescsv.csv")); //ruta del archivo de texto plano a leer
             String linea;
@@ -80,4 +82,6 @@ public class ControladorArchivoBinarioPatron {
             System.out.println(e);
         }
     }
+        
+        
 }

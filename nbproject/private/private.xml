@@ -14,11 +14,12 @@
         <group>
             <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/crearMuestra.java</file>
             <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/crearPatron.java</file>
+            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/controlador/ControladorArchivoBinarioMues.java</file>
             <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/modelos/muestras.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/modelos/patrones.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/controlador/ControladorArchivoBinarioPatron.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/controlador/ControladorArchivoCsvMues.java</file>
-            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/eliminarPatron.java</file>
+            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/modUsuario.java</file>
+            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/modInves.java</file>
+            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/RenderBttnVerMues.java</file>
+            <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/CrearInves.java</file>
             <file>file:/C:/Users/cardo/OneDrive/Escritorio/IPC_Quimik/src/vista/modAdmin.java</file>
         </group>
     </open-files>

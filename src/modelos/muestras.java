@@ -1,26 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author cardo
- */
-public class muestras {
+public class muestras implements Serializable {
     
-    public ArrayList<muestras> agregarMuestras;
+    private static final long serialVersionUID = 1L;
+
     private String Codigo;
     private String Descripcion;
     private String Estado;
 
-    public muestras(String Codigo, String Descripcion, String Estado) {
+    public muestras(String Codigo, String Descripcion) {
         this.Codigo = Codigo;
         this.Descripcion = Descripcion;
-        this.Estado = Estado;
+    }
+
+    public muestras() {
     }
 
     public String getCodigo() {
@@ -35,11 +31,6 @@ public class muestras {
         return Estado;
     }
 
-
-    public void setAgregarMuestras(ArrayList<muestras> agregarMuestras) {
-        this.agregarMuestras = agregarMuestras;
-    }
-
     public void setCodigo(String Codigo) {
         this.Codigo = Codigo;
     }
@@ -51,6 +42,5 @@ public class muestras {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-
-    
 }
+

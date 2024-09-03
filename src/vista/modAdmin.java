@@ -5,10 +5,10 @@
 package vista;
 
 import controlador.ControladorArchivoBinInves;
+import controlador.ControladorArchivoBinarioMues;
 import controlador.ControladorArchivoBinarioPatron;
 
-import controlador.ControladorArchivoCsvMues;
-import controlador.ControladorArchivoCsvPatron;
+
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -35,42 +35,40 @@ public class modAdmin extends javax.swing.JFrame {
         refrescarTablaPatrones();
         
     }
-    //metodo para crear investigadores y para resfrescar la tabla de investigadores
     
-        public void refrescarTabla(){
+    //metodo para crear investigadores y para resfrescar la tabla de investigadores
+    public void refrescarTabla() {
             ControladorArchivoBinInves archivoBinario = new ControladorArchivoBinInves();
-            ArrayList<investigador> investigador = archivoBinario.obtenerContenido("investigador.bin");
-
+            ArrayList<investigador> investigadores = archivoBinario.obtenerContenido("investigador.bin");
             DefaultTableModel tablaModelo = (DefaultTableModel)jTable1.getModel();
             tablaModelo.setRowCount(0);
-            for (investigador invest : investigador) {
+            for (investigador invest : investigadores) {
                 tablaModelo.addRow(new Object[]{invest.getCodigo(), invest.getNombre(), invest.getGenero()});
-                System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + ", genero:" + invest.getGenero());
+                System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + 
+                                   ", Género: " + invest.getGenero() + ", Contraseña: " + invest.getContrasena());
             }  
         }
     
     //metodo para refrescar la tabla de muestras
-        
-        public void refrescarTabla2() {
-            ControladorArchivoCsvMues archivoCsvMues = new ControladorArchivoCsvMues();
-            ArrayList<muestras> muestras = archivoCsvMues.obtenerContenidoMues("C:\\Users\\cardo\\OneDrive\\Escritorio\\muestrascsv.csv");
+    public void refrescarTabla2() {
+        ControladorArchivoBinarioMues archivoBinarioMues = new ControladorArchivoBinarioMues();
+        ArrayList<muestras> muestras = archivoBinarioMues.obtenerContenidoMues("muestras.bin");
 
-            DefaultTableModel tablaModeloMues = (DefaultTableModel) jTable2.getModel();
-            tablaModeloMues.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
+        DefaultTableModel tablaModeloMues = (DefaultTableModel) jTable2.getModel();
+        tablaModeloMues.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
 
-            for (muestras mues : muestras) {
-                tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "Ver"});
-            }
-
-            // Asegúrate de asignar el renderizador y el editor después de llenar los datos
-            TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
-            columnaAcciones.setCellRenderer(new RenderBttnVerMues());
-            columnaAcciones.setCellEditor(new RenderBttnVerMues());
+        for (muestras mues : muestras) {
+            tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "Ver"});
         }
+
+        // Asegúrate de asignar el renderizador y el editor después de llenar los datos
+        TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
+        columnaAcciones.setCellRenderer(new RenderBttnVerMues());
+        columnaAcciones.setCellEditor(new RenderBttnVerMues());
+    }
         
         
     // Método para refrescar la tabla de patrones
-        
     public void refrescarTablaPatrones() {
         ControladorArchivoBinarioPatron archivoBinarioPatrones = new ControladorArchivoBinarioPatron();
         ArrayList<patrones> patrones = archivoBinarioPatrones.obtenerContenidoPatrones("patrones.bin");
@@ -235,6 +233,11 @@ public class modAdmin extends javax.swing.JFrame {
         });
 
         bttnCargarMu.setText("Cargar");
+        bttnCargarMu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCargarMuActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -475,27 +478,20 @@ public class modAdmin extends javax.swing.JFrame {
         CInv.setLocationRelativeTo(null);
         CInv.setVisible(true);
         
-   
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+     
     }//GEN-LAST:event_bttnCrearInvActionPerformed
 
     private void bttnCargarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCargarInvActionPerformed
         // TODO add your handling code here:
         
-        ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
-        archivo.leerCSV("investigador.bin");
-        JOptionPane.showMessageDialog(null, "Investigadores cargados correctanebte");
-        
-        
+       
+    ControladorArchivoBinInves controlador = new ControladorArchivoBinInves();
+    String rutaCSV = "C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv";
+    String rutaBinario = "investigador.bin";
+    controlador.leerCSV(rutaCSV, rutaBinario);
+    refrescarTabla();
+    JOptionPane.showMessageDialog(this, "Datos cargados exitosamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+
         
         
         
@@ -586,6 +582,14 @@ public class modAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         refrescarTablaPatrones();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void bttnCargarMuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCargarMuActionPerformed
+    
+        ControladorArchivoBinarioMues archivo = new ControladorArchivoBinarioMues();
+        archivo.leerCSV("muestras.bin");
+        JOptionPane.showMessageDialog(null, "muestras cargados correctanebte");
+        
+    }//GEN-LAST:event_bttnCargarMuActionPerformed
 
     /**
      * @param args the command line arguments

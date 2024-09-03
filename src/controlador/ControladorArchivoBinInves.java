@@ -57,6 +57,7 @@ public class ControladorArchivoBinInves {
             System.out.println("Error al agregar contenido: " + e.getMessage());
         }  
     }
+   
     
     public void eliminarContenido(String ruta_archivo, String codigo){
         try {
@@ -78,7 +79,8 @@ public class ControladorArchivoBinInves {
             System.out.println("Error al agregar contenido: " + e.getMessage());
         }  
     }        
-       
+    
+    
     public ArrayList<investigador> obtenerContenido(String ruta_archivo){
         ArrayList<investigador> respuesta = new ArrayList<>();
         try {
@@ -98,30 +100,25 @@ public class ControladorArchivoBinInves {
     }
     
     
-    public void leerCSV(String ruta_archivo){
-        try {
-            BufferedReader lector = new BufferedReader(new FileReader("C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv")); //ruta del archivo de texto plano a leer
-            String linea;
-            lector.readLine();
-            ControladorArchivoBinInves archivo = new ControladorArchivoBinInves();
-            while ((linea = lector.readLine()) != null) {              
-                String[] contenido = linea.split(",");
-                System.out.println("Codigo: " + contenido[0]);
-                System.out.println("Nombre: " + contenido[1]);
-                System.out.println("Genero: " + contenido[2]);
-                System.out.println("Experimientos: " + contenido[3]);
-                System.out.println("Contrasenia: " + contenido[4]);
-            
-                archivo.agregarContenido("investigador.bin", new investigador(contenido[0],contenido[1],contenido[2],contenido[3])); //ruta del .bin donde se guardara lo leido del csv
+   public void leerCSV(String rutaCSV, String rutaBinario) {
+    try {
+        BufferedReader lector = new BufferedReader(new FileReader(rutaCSV));
+        String linea;
+        lector.readLine(); // Saltar la primera línea si contiene encabezados
+        while ((linea = lector.readLine()) != null) {              
+            String[] contenido = linea.split(",");
+            if(contenido.length >= 5) {
+                investigador nuevoInvestigador = new investigador(contenido[0], contenido[1], contenido[2], contenido[4]);
+                agregarContenido(rutaBinario, nuevoInvestigador);
             }
-            lector.close();
-        } catch (Exception e) {
-            System.out.println(e);
         }
+        lector.close();
+    } catch (Exception e) {
+        System.out.println("Error al leer CSV: " + e.getMessage());
     }
+}
    
  
-
     public investigador buscarInvestigador(String codigo, String contrasena, String ruta_archivo) {
             ArrayList<investigador> investigadores = obtenerContenido(ruta_archivo);
             for (investigador inv : investigadores) {
@@ -136,7 +133,6 @@ public class ControladorArchivoBinInves {
     
     
     
-    
-    
+  
     
 }

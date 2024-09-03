@@ -5,7 +5,6 @@
 package vista;
 
 import controlador.ControladorArchivoBinarioPatron;
-import controlador.ControladorArchivoCsvPatron;
 import javax.swing.JOptionPane;
 import modelos.patrones;
 
@@ -126,11 +125,10 @@ public class crearPatron extends javax.swing.JFrame {
         String codigo = txtCod.getText();
         String nombre = txtContra.getText();
 
-        // Verificar si el código ya existe
+        // Validar si el codigo ya existe
         if (archivoBinario.codigoExiste(rutaArchivo, codigo)) {
             JOptionPane.showMessageDialog(null, "El código del patrón ya existe. Por favor, elige otro código.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            // Si el código no existe, agregar el nuevo patrón
             patrones nuevoPatron = new patrones(codigo, nombre);
             archivoBinario.agregarContenidoPatrones(rutaArchivo, nuevoPatron);
             JOptionPane.showMessageDialog(null, "Patrón registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
