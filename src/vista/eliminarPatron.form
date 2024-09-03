@@ -35,7 +35,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="126" max="-2" attributes="0"/>
+                              <Component id="txtCod" min="-2" pref="126" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -56,7 +56,7 @@
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="bttnEliminarP" min="-2" max="-2" attributes="0"/>
@@ -76,7 +76,7 @@
         <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtCod">
     </Component>
     <Component class="javax.swing.JButton" name="bttnEliminarP">
       <Properties>

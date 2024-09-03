@@ -4,6 +4,9 @@
  */
 package vista;
 
+import controlador.ControladorArchivoCsvPatron;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cardo
@@ -28,7 +31,7 @@ public class eliminarPatron extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCod = new javax.swing.JTextField();
         bttnEliminarP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -59,7 +62,7 @@ public class eliminarPatron extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(62, 62, 62)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(bttnEliminarP)))
@@ -73,7 +76,7 @@ public class eliminarPatron extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(bttnEliminarP)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -84,6 +87,13 @@ public class eliminarPatron extends javax.swing.JFrame {
 
     private void bttnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarPActionPerformed
         // TODO add your handling code here:
+        
+        ControladorArchivoCsvPatron archivo = new ControladorArchivoCsvPatron();
+        archivo.eliminarPatron("C:\\Users\\cardo\\OneDrive\\Escritorio\\patronescsv.csv", txtCod.getText());
+        JOptionPane.showMessageDialog(null, "Investigador eliminado correctamente");
+        txtCod.setText("");
+    
+        
     }//GEN-LAST:event_bttnEliminarPActionPerformed
 
     /**
@@ -125,6 +135,6 @@ public class eliminarPatron extends javax.swing.JFrame {
     private javax.swing.JButton bttnEliminarP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtCod;
     // End of variables declaration//GEN-END:variables
 }
