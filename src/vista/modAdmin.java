@@ -5,6 +5,8 @@
 package vista;
 
 import controlador.ControladorArchivoBinInves;
+import controlador.ControladorArchivoBinarioPatron;
+
 import controlador.ControladorArchivoCsvMues;
 import controlador.ControladorArchivoCsvPatron;
 
@@ -69,22 +71,24 @@ public class modAdmin extends javax.swing.JFrame {
         
     // Método para refrescar la tabla de patrones
         
-        public void refrescarTablaPatrones() {
-            ControladorArchivoCsvPatron archivoCsvPatrones = new ControladorArchivoCsvPatron();
-            ArrayList<patrones> patrones = archivoCsvPatrones.obtenerContenidoPatrones("C:\\Users\\cardo\\OneDrive\\Escritorio\\patronescsv.csv");
+    public void refrescarTablaPatrones() {
+        ControladorArchivoBinarioPatron archivoBinarioPatrones = new ControladorArchivoBinarioPatron();
+        ArrayList<patrones> patrones = archivoBinarioPatrones.obtenerContenidoPatrones("patrones.bin");
 
-            DefaultTableModel tablaModelo = (DefaultTableModel) jTable3.getModel();
-            tablaModelo.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
+        DefaultTableModel tablaModelo = (DefaultTableModel) jTable3.getModel();
+        tablaModelo.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
 
-            for (patrones patron : patrones) {
+        for (patrones patron : patrones) {
             tablaModelo.addRow(new Object[]{patron.getCodigo(), patron.getNombre(), "Ver"});
-            }
-
-            // Asegúrate de asignar el renderizador y el editor después de llenar los datos
-            TableColumn columnaAcciones = jTable3.getColumnModel().getColumn(2);
-            columnaAcciones.setCellRenderer(new RenderBttnVerPatron());
-            columnaAcciones.setCellEditor(new RenderBttnVerPatron());
         }
+
+        // Asegúrate de asignar el renderizador y el editor después de llenar los datos
+        TableColumn columnaAcciones = jTable3.getColumnModel().getColumn(2);
+        columnaAcciones.setCellRenderer(new RenderBttnVerPatron());
+        columnaAcciones.setCellEditor(new RenderBttnVerPatron());
+    }
+
+
         
   
 
@@ -551,6 +555,10 @@ public class modAdmin extends javax.swing.JFrame {
 
     private void bttnCargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCargarPActionPerformed
         // TODO add your handling code here:
+        
+        ControladorArchivoBinarioPatron archivo = new ControladorArchivoBinarioPatron();
+        archivo.leerCSV("patrones.bin");
+        JOptionPane.showMessageDialog(null, "Investigadores cargados correctanebte");
         
 
         

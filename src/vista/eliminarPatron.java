@@ -4,7 +4,8 @@
  */
 package vista;
 
-import controlador.ControladorArchivoCsvPatron;
+import controlador.ControladorArchivoBinarioPatron;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -88,12 +89,22 @@ public class eliminarPatron extends javax.swing.JFrame {
     private void bttnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarPActionPerformed
         // TODO add your handling code here:
         
-        ControladorArchivoCsvPatron archivo = new ControladorArchivoCsvPatron();
-        archivo.eliminarPatron("C:\\Users\\cardo\\OneDrive\\Escritorio\\patronescsv.csv", txtCod.getText());
-        JOptionPane.showMessageDialog(null, "Investigador eliminado correctamente");
-        txtCod.setText("");
+    String codigo = txtCod.getText();
     
-        
+    // Verifica que el campo no esté vacío
+    if (codigo.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor ingrese el código del patrón a eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    ControladorArchivoBinarioPatron archivo = new ControladorArchivoBinarioPatron();
+    archivo.eliminarPatron("patrones.bin", codigo);
+    JOptionPane.showMessageDialog(null, "Patrón eliminado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+    
+    txtCod.setText(""); // Limpia el campo de texto
+
+    
     }//GEN-LAST:event_bttnEliminarPActionPerformed
 
     /**

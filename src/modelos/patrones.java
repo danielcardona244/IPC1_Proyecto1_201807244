@@ -1,10 +1,10 @@
 package modelos;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class patrones {
-    
-    public ArrayList<patrones> agregarPatron;
+public class patrones implements Serializable {
+    private static final long serialVersionUID = 1L; // Agregar serialVersionUID
+
     private String codigo;
     private String nombre;
 
@@ -21,10 +21,6 @@ public class patrones {
         return nombre;
     }
 
-    public void setAgregarPatron(ArrayList<patrones> agregarPatron) {
-        this.agregarPatron = agregarPatron;
-    }
-
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -32,8 +28,6 @@ public class patrones {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
-    
 }
+
 
