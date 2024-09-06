@@ -65,11 +65,7 @@ public class modAdmin extends javax.swing.JFrame {
         DefaultTableModel tablaModeloMues = (DefaultTableModel) jTable2.getModel();
         tablaModeloMues.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
         for (muestras mues : muestras) {
-            tablaModeloMues.addRow(new Object[]{
-                mues.getCodigo(), 
-                mues.getDescripcion(), 
-                mues.getEstado() // Mostrar el estado actualizado
-            });
+            tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "ver"});
             System.out.println("Código: " + mues.getCodigo() + ", Descripción: " + mues.getDescripcion() + ", Estado: " + mues.getEstado());
         }
     }

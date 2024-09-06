@@ -39,9 +39,8 @@ public class RenderBttnVerMues extends AbstractCellEditor implements TableCellRe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int columnaEspecifica = 0; // Cambia este valor a la columna que necesites
-        Object valor = table.getValueAt(fila, columnaEspecifica);
-        System.out.println("Botón en la fila " + fila + " presionado. Valor de la columna " + columnaEspecifica + ": " + valor);
-        fireEditingStopped();
+  
+        System.out.println("Botón en la fila " + fila + " presionado. Valor de la columna ");
+     
     }
 }

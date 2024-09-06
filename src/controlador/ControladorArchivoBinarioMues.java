@@ -72,4 +72,13 @@ public class ControladorArchivoBinarioMues {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    
+    public void guardarContenidoMues(String rutaArchivo, ArrayList<muestras> listaMuestras) {
+    try (ObjectOutputStream salidaObjeto = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
+        salidaObjeto.writeObject(listaMuestras);
+    } catch (IOException e) {
+        System.out.println("Error al guardar contenido: " + e.getMessage());
+    }
+}
+
 }

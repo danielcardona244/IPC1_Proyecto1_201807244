@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -139,6 +140,14 @@ public class ControladorArchivoBinInves {
     return null;
 }
     
+    //para la asignacion de experimentos
+    public void guardarContenido(String rutaArchivo, ArrayList<investigador> listaInvestigadores) {
+    try (ObjectOutputStream salidaObjeto = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
+        salidaObjeto.writeObject(listaInvestigadores);
+    } catch (IOException e) {
+        System.out.println("Error al guardar contenido: " + e.getMessage());
+    }
+}
     
   
     

@@ -41,32 +41,44 @@ public class ControladorAsignacion {
 }
 
     public boolean asignarExperimento(String codigoInvestigador, String codigoMuestra) {
-    if (codigoInvestigador == null || codigoMuestra == null) {
+    ControladorArchivoBinInves controladorInves = new ControladorArchivoBinInves();
+    ControladorArchivoBinarioMues controladorMues = new ControladorArchivoBinarioMues();
+    
+    // Buscar el investigador por código
+    ArrayList<investigador> investigadores = controladorInves.obtenerContenido("investigador.bin");
+    investigador invEncontrado = null;
+    
+    for (investigador inv : investigadores) {
+        if (inv.getCodigo().equals(codigoInvestigador)) {
+            inv.setExperimento(codigoMuestra); // Asignar el experimento al investigador
+            invEncontrado = inv;
+            break;
+        }
+    }
+    
+    if (invEncontrado == null) {
+        System.out.println("Investigador no encontrado");
         return false;
     }
+    
+    // Actualizar archivo binario de investigadores
+    controladorInves.guardarContenido("investigador.bin", investigadores);
 
-    // Buscar y modificar el investigador
-    investigador inv = controladorInves.buscarInvestigadorPorCodigo(codigoInvestigador, "investigador.bin");
-    if (inv != null) {
-        inv.setExperimento(codigoMuestra); // Asignar el experimento
-        controladorInves.modificarContenido("investigador.bin", codigoInvestigador, inv); // Modificar el archivo binario
- 
-    } else {
-        return false;
+    // Cambiar estado de la muestra a "en proceso"
+    ArrayList<muestras> muestras = controladorMues.obtenerContenidoMues("muestras.bin");
+    for (muestras m : muestras) {
+        if (m.getCodigo().equals(codigoMuestra)) {
+            m.setEstado("en proceso"); // Cambiar el estado de la muestra
+            break;
+        }
     }
-
-    // Buscar y modificar la muestra
-    muestras m = controladorMuestras.buscarMuestraPorCodigo(codigoMuestra, "muestras.bin");
-    if (m != null) {
-        m.setEstado("en proceso"); // Cambiar el estado de la muestra
-        controladorMuestras.agregarContenidoMues("muestras.bin", m); // Guardar los cambios en el archivo binario
-
-    } else {
-        return false;
-    }
-
+    
+    // Actualizar archivo binario de muestras
+    controladorMues.guardarContenidoMues("muestras.bin", muestras);
+    
     return true;
 }
+
 
 }
     
