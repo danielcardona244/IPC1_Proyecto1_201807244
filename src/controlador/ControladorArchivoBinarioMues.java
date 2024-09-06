@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import modelos.muestras;
 
 public class ControladorArchivoBinarioMues {
@@ -32,6 +33,9 @@ public class ControladorArchivoBinarioMues {
         return listaMuestras;
     }
     
+    
+            
+            
     // Método para cargar datos desde un archivo CSV y guardarlos en un archivo binario
     public void leerCSV(String ruta_archivo){
         try {
@@ -46,7 +50,7 @@ public class ControladorArchivoBinarioMues {
                 System.out.println("Nombre: " + contenido[2]);
    
             
-                archivo.agregarContenidoMues("muestras.bin", new muestras(contenido[0],contenido[1])); //ruta del .bin donde se guardara lo leido del csv
+                archivo.agregarContenidoMues("muestras.bin", new muestras(contenido[0],contenido[1],contenido[2])); //ruta del .bin donde se guardara lo leido del csv
             }
             lector.close();
         } catch (Exception e) {
@@ -54,6 +58,18 @@ public class ControladorArchivoBinarioMues {
         }
     }
     
-    
+    public muestras buscarMuestraPorCodigo(String codigo, String ruta_archivo) {
+    ArrayList<muestras> listaMuestras = obtenerContenidoMues(ruta_archivo);
+    for (muestras m : listaMuestras) {
+        if (m.getCodigo().equals(codigo)) {
+            return m;
+        }
+    }
+    return null;
+}
+
+    private ArrayList<muestras> obtenerContenido(String ruta_archivo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

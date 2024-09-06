@@ -30,6 +30,8 @@ public class crearMuestra extends javax.swing.JFrame {
         txtCod = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         bttnCrearMu = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtEstado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -39,7 +41,7 @@ public class crearMuestra extends javax.swing.JFrame {
 
         jLabel3.setText("Descripción");
 
-        jLabel4.setText("Patrón");
+        jLabel4.setText("Estado");
 
         bttnCrearMu.setText("Crear");
         bttnCrearMu.addActionListener(new java.awt.event.ActionListener() {
@@ -48,6 +50,8 @@ public class crearMuestra extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Patron");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,22 +59,27 @@ public class crearMuestra extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCod, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                            .addComponent(txtDescripcion)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(bttnCrearMu)))
-                .addGap(14, 14, 14))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(128, 128, 128))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(80, 80, 80)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCod, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                    .addComponent(txtDescripcion)
+                                    .addComponent(txtEstado)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(160, 160, 160)
+                                .addComponent(bttnCrearMu)))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(128, 128, 128)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,9 +94,13 @@ public class crearMuestra extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(bttnCrearMu)
                 .addGap(35, 35, 35))
         );
@@ -98,10 +111,11 @@ public class crearMuestra extends javax.swing.JFrame {
     private void bttnCrearMuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearMuActionPerformed
       
         ControladorArchivoBinarioMues archivo = new ControladorArchivoBinarioMues();
-        archivo.agregarContenidoMues("muestras.bin", new muestras(txtCod.getText(), txtDescripcion.getText()));
+        archivo.agregarContenidoMues("muestras.bin", new muestras(txtCod.getText(), txtDescripcion.getText(),txtEstado.getText() ));
         JOptionPane.showMessageDialog(null, "Muestra registrado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
         txtCod.setText("");
         txtDescripcion.setText("");
+        txtEstado.setText("");
     }//GEN-LAST:event_bttnCrearMuActionPerformed
 
     /**
@@ -145,7 +159,9 @@ public class crearMuestra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtEstado;
     // End of variables declaration//GEN-END:variables
 }

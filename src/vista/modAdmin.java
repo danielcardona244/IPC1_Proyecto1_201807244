@@ -1,16 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
 import controlador.ControladorArchivoBinInves;
 import controlador.ControladorArchivoBinarioMues;
 import controlador.ControladorArchivoBinarioPatron;
-
-
-
+import controlador.ControladorAsignacion;
 import java.util.ArrayList;
+
+
+
+
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -34,20 +33,29 @@ public class modAdmin extends javax.swing.JFrame {
         refrescarTabla2();
         refrescarTablaPatrones();
         
+        ControladorAsignacion controladorAsignacion = new ControladorAsignacion();
+        controladorAsignacion.cargarComboBoxes(comboInves, comboMues);
+        
     }
     
     //metodo para crear investigadores y para resfrescar la tabla de investigadores
     public void refrescarTabla() {
-            ControladorArchivoBinInves archivoBinario = new ControladorArchivoBinInves();
-            ArrayList<investigador> investigadores = archivoBinario.obtenerContenido("investigador.bin");
-            DefaultTableModel tablaModelo = (DefaultTableModel)jTable1.getModel();
-            tablaModelo.setRowCount(0);
-            for (investigador invest : investigadores) {
-                tablaModelo.addRow(new Object[]{invest.getCodigo(), invest.getNombre(), invest.getGenero()});
-                System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + 
-                                   ", Género: " + invest.getGenero() + ", Contraseña: " + invest.getContrasena());
-            }  
-        }
+    ControladorArchivoBinInves archivoBinario = new ControladorArchivoBinInves();
+    ArrayList<investigador> investigadores = archivoBinario.obtenerContenido("investigador.bin");
+    DefaultTableModel tablaModelo = (DefaultTableModel) jTable1.getModel();
+    tablaModelo.setRowCount(0);
+    for (investigador invest : investigadores) {
+        tablaModelo.addRow(new Object[]{
+            invest.getCodigo(), 
+            invest.getNombre(), 
+            invest.getGenero(), 
+            invest.getExperimento()
+        });
+        System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + 
+                           ", Género: " + invest.getGenero() + ", Experimento: " + invest.getExperimento());
+    }
+}
+
     
     //metodo para refrescar la tabla de muestras
     public void refrescarTabla2() {
@@ -56,16 +64,16 @@ public class modAdmin extends javax.swing.JFrame {
 
         DefaultTableModel tablaModeloMues = (DefaultTableModel) jTable2.getModel();
         tablaModeloMues.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
-
         for (muestras mues : muestras) {
-            tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "Ver"});
+            tablaModeloMues.addRow(new Object[]{
+                mues.getCodigo(), 
+                mues.getDescripcion(), 
+                mues.getEstado() // Mostrar el estado actualizado
+            });
+            System.out.println("Código: " + mues.getCodigo() + ", Descripción: " + mues.getDescripcion() + ", Estado: " + mues.getEstado());
         }
-
-        // Asegúrate de asignar el renderizador y el editor después de llenar los datos
-        TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
-        columnaAcciones.setCellRenderer(new RenderBttnVerMues());
-        columnaAcciones.setCellEditor(new RenderBttnVerMues());
     }
+
         
         
     // Método para refrescar la tabla de patrones
@@ -119,8 +127,8 @@ public class modAdmin extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboInves = new javax.swing.JComboBox<>();
+        comboMues = new javax.swing.JComboBox<>();
         bttnAsigExp = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         bttnCrearP = new javax.swing.JButton();
@@ -300,16 +308,26 @@ public class modAdmin extends javax.swing.JFrame {
 
         jLabel2.setText("Muestra");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboInves.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboInves.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboInvesActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboMues.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboMues.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMuesActionPerformed(evt);
+            }
+        });
 
         bttnAsigExp.setText("Asignar");
+        bttnAsigExp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnAsigExpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -322,14 +340,14 @@ public class modAdmin extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGap(125, 125, 125)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(114, 114, 114)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboMues, 0, 125, Short.MAX_VALUE)
+                            .addComponent(comboInves, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(221, 221, 221)
                         .addComponent(bttnAsigExp)))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,11 +355,11 @@ public class modAdmin extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboInves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(comboMues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(bttnAsigExp)
                 .addContainerGap(128, Short.MAX_VALUE))
@@ -467,9 +485,11 @@ public class modAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void comboInvesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboInvesActionPerformed
+     
+
+
+    }//GEN-LAST:event_comboInvesActionPerformed
 
     private void bttnCrearInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCrearInvActionPerformed
         // TODO add your handling code here:
@@ -591,6 +611,37 @@ public class modAdmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bttnCargarMuActionPerformed
 
+    private void comboMuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMuesActionPerformed
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_comboMuesActionPerformed
+
+    private void bttnAsigExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnAsigExpActionPerformed
+        // TODO add your handling code here:
+                                                  
+    String codigoInvestigador = (String) comboInves.getSelectedItem();
+    String codigoMuestra = (String) comboMues.getSelectedItem();
+    
+    if (codigoInvestigador == null || codigoMuestra == null) {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un investigador y una muestra", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    ControladorAsignacion controladorAsignacion = new ControladorAsignacion();
+    boolean asignacionExitosa = controladorAsignacion.asignarExperimento(codigoInvestigador, codigoMuestra);
+    
+    if (asignacionExitosa) {
+        JOptionPane.showMessageDialog(this, "Experimento asignado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        // Actualizar las tablas y comboboxes
+        refrescarTabla();
+        refrescarTabla2();
+        controladorAsignacion.cargarComboBoxes(comboInves, comboMues);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al asignar el experimento", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_bttnAsigExpActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -638,11 +689,11 @@ public class modAdmin extends javax.swing.JFrame {
     private javax.swing.JButton bttnCrearP;
     private javax.swing.JButton bttnEliminarInv;
     private javax.swing.JButton bttnEliminarP;
+    private javax.swing.JComboBox<String> comboInves;
+    private javax.swing.JComboBox<String> comboMues;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

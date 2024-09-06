@@ -1,4 +1,3 @@
-
 package controlador;
 
 import java.io.BufferedReader;
@@ -129,8 +128,16 @@ public class ControladorArchivoBinInves {
             return null; // Si no encuentra al investigador
     }
     
-    
-    
+    //metodo que solo sirve en asignacion
+    public investigador buscarInvestigadorPorCodigo(String codigo, String ruta_archivo) {
+    ArrayList<investigador> investigadores = obtenerContenido(ruta_archivo);
+    for (investigador inv : investigadores) {
+        if (inv.getCodigo().equals(codigo)) {
+            return inv;
+        }
+    }
+    return null;
+}
     
     
   

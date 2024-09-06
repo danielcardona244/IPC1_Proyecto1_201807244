@@ -11,8 +11,8 @@ public class investigador implements Serializable{
     private String Codigo;
     private String nombre;
     private String genero;
+    private String experimento;
     private String Contrasena;
-
 
   
         
@@ -36,6 +36,11 @@ public class investigador implements Serializable{
         return genero;
     }
 
+    public String getExperimento() {
+        return experimento;
+    }
+    
+
     public String getContrasena() {
         return Contrasena;
     }
@@ -56,6 +61,11 @@ public class investigador implements Serializable{
         this.genero = genero;
     }
 
+    public void setExperimento(String experimento) {
+        this.experimento = experimento;
+    }
+        
+    
     public void setContrasena(String Contrasena) {
         this.Contrasena = Contrasena;
     }
