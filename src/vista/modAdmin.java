@@ -68,6 +68,9 @@ public class modAdmin extends javax.swing.JFrame {
             tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "ver"});
             System.out.println("Código: " + mues.getCodigo() + ", Descripción: " + mues.getDescripcion() + ", Estado: " + mues.getEstado());
         }
+        TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
+        columnaAcciones.setCellRenderer(new RenderBttnVerMues());
+        columnaAcciones.setCellEditor(new RenderBttnVerMues());
     }
 
         
@@ -603,6 +606,7 @@ public class modAdmin extends javax.swing.JFrame {
     
         ControladorArchivoBinarioMues archivo = new ControladorArchivoBinarioMues();
         archivo.leerCSV("muestras.bin");
+        refrescarTabla2();
         JOptionPane.showMessageDialog(null, "muestras cargados correctanebte");
         
     }//GEN-LAST:event_bttnCargarMuActionPerformed
