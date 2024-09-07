@@ -29,13 +29,13 @@ public class modAdmin extends javax.swing.JFrame {
      */
     public modAdmin() {
         initComponents();
-        refrescarTabla();
-        refrescarTabla2();
-        refrescarTablaPatrones();
+        refrescarTabla();//refresca la tabla de investigadores
+        refrescarTabla2();//refresca la tabla de muestras
+        refrescarTablaPatrones();//refresca la tabla de patrones
       
     
         
-        
+        //llenan mis comboboxes
         ControladorAsignacion controladorAsignacion = new ControladorAsignacion();
         controladorAsignacion.cargarComboBoxes(comboInves, comboMues);
         
@@ -61,7 +61,7 @@ public class modAdmin extends javax.swing.JFrame {
         ArrayList<muestras> muestras = archivoBinarioMues.obtenerContenidoMues("muestras.bin");
 
         DefaultTableModel tablaModeloMues = (DefaultTableModel) jTable2.getModel();
-        tablaModeloMues.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
+        tablaModeloMues.setRowCount(0); 
         for (muestras mues : muestras) {
             tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "ver"});
  
@@ -79,13 +79,11 @@ public class modAdmin extends javax.swing.JFrame {
         ArrayList<patrones> patrones = archivoBinarioPatrones.obtenerContenidoPatrones("patrones.bin");
 
         DefaultTableModel tablaModelo = (DefaultTableModel) jTable3.getModel();
-        tablaModelo.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
-
+        tablaModelo.setRowCount(0); 
         for (patrones patron : patrones) {
             tablaModelo.addRow(new Object[]{patron.getCodigo(), patron.getNombre(), "Ver"});
         }
 
-        // Asegúrate de asignar el renderizador y el editor después de llenar los datos
         TableColumn columnaAcciones = jTable3.getColumnModel().getColumn(2);
         columnaAcciones.setCellRenderer(new RenderBttnVerPatron());
         columnaAcciones.setCellEditor(new RenderBttnVerPatron());
@@ -499,8 +497,8 @@ public class modAdmin extends javax.swing.JFrame {
         
        
     ControladorArchivoBinInves controlador = new ControladorArchivoBinInves();
-    String rutaCSV = "C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv";
-    String rutaBinario = "investigador.bin";
+    String rutaCSV = "C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv"; //la ruta del csv a cargar a diferencia de las muestras y patrones esta ruta no la puse en mis controladores
+    String rutaBinario = "investigador.bin";//ruta del .bin de mis investigadores
     controlador.leerCSV(rutaCSV, rutaBinario);
     refrescarTabla();
     JOptionPane.showMessageDialog(this, "Datos cargados exitosamente", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -568,7 +566,7 @@ public class modAdmin extends javax.swing.JFrame {
         ControladorArchivoBinarioPatron archivo = new ControladorArchivoBinarioPatron();
         archivo.leerCSV("patrones.bin");
         refrescarTablaPatrones();
-        JOptionPane.showMessageDialog(null, "Investigadores cargados correctanebte");
+        JOptionPane.showMessageDialog(null, "Patrones cargados correctanebte");
         
 
         
@@ -620,7 +618,7 @@ public class modAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_comboMuesActionPerformed
 
     private void bttnAsigExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnAsigExpActionPerformed
-        // TODO add your handling code here:
+        //asignador de experimentos
                                                   
     String codigoInvestigador = (String) comboInves.getSelectedItem();
     String codigoMuestra = (String) comboMues.getSelectedItem();
@@ -635,7 +633,7 @@ public class modAdmin extends javax.swing.JFrame {
     
     if (asignacionExitosa) {
         JOptionPane.showMessageDialog(this, "Experimento asignado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        // Actualizar las tablas y comboboxes
+        
         refrescarTabla();
         refrescarTabla2();
         controladorAsignacion.cargarComboBoxes(comboInves, comboMues);

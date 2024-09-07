@@ -17,8 +17,8 @@ public class ControladorAsignacion {
     }
 
     public void cargarComboBoxes(JComboBox<String> jComboBoxInvestigadores, JComboBox<String> jComboBoxMuestras) {
-    ArrayList<investigador> investigadores = controladorInves.obtenerContenido("investigador.bin");
-    ArrayList<muestras> muestras = controladorMuestras.obtenerContenidoMues("muestras.bin");
+    ArrayList<investigador> investigadores = controladorInves.obtenerContenido("investigador.bin");//ruta de mi archivo de investigadpres
+    ArrayList<muestras> muestras = controladorMuestras.obtenerContenidoMues("muestras.bin");//ruta de mi archivo de muestras
     
     
     
@@ -32,7 +32,7 @@ public class ControladorAsignacion {
     int contador = 0;
     for (muestras m : muestras) {
       
-        if ("en ingreso".equals(m.getEstado())) {
+        if ("ingresado".equals(m.getEstado())) {
             jComboBoxMuestras.addItem(m.getCodigo());
             contador++;
         }

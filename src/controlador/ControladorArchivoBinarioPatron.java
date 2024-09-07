@@ -14,10 +14,10 @@ public class ControladorArchivoBinarioPatron {
         ArrayList<patrones> patrones = obtenerContenidoPatrones(rutaArchivo);
         for (patrones patron : patrones) {
             if (patron.getCodigo().equals(codigo)) {
-                return true; // El código ya existe
+                return true; 
             }
         }
-        return false; // El código no existe
+        return false; 
     }
     
     
@@ -33,7 +33,7 @@ public class ControladorArchivoBinarioPatron {
         }
     }
 
-    //metodo para eliminar patrones
+    
     public void eliminarPatron(String rutaArchivo, String codigo) {
         List<patrones> listadoPatrones = obtenerContenidoPatrones(rutaArchivo);
         listadoPatrones.removeIf(patron -> patron.getCodigo().equals(codigo));

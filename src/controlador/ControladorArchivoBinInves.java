@@ -17,7 +17,7 @@ import modelos.investigador;
 public class ControladorArchivoBinInves {
     
     
-    //para cre
+    //para crear investigadores
     public void agregarContenido(String ruta_archivo, investigador inves){
         try {
             List<investigador> listadoinves = this.obtenerContenido(ruta_archivo);
@@ -99,7 +99,7 @@ public class ControladorArchivoBinInves {
     
    public void leerCSV(String rutaCSV, String rutaBinario) {
     try {
-        BufferedReader lector = new BufferedReader(new FileReader(rutaCSV));
+        BufferedReader lector = new BufferedReader(new FileReader(rutaCSV)); //en este metodo use la ruta en el  botn a diferencia a los de las muestra y patrones
         String linea;
         lector.readLine(); 
         while ((linea = lector.readLine()) != null) {              
@@ -126,7 +126,7 @@ public class ControladorArchivoBinInves {
             return null; 
     }
     
-    //metodo que usa en asignar experimento para que me salgan los codigos de los investigadores
+    //lo uso para asignar los experimentos
     public investigador buscarInvestigadorPorCodigo(String codigo, String ruta_archivo) {
     ArrayList<investigador> investigadores = obtenerContenido(ruta_archivo);
     for (investigador inv : investigadores) {

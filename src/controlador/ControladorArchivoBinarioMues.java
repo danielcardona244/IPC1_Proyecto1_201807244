@@ -8,7 +8,7 @@ import modelos.muestras;
 public class ControladorArchivoBinarioMues {
     
     
-    // Método para agregar una muestra al archivo binario
+    // Método para agregar una muestra 
     public void agregarContenidoMues(String ruta_archivo, muestras mues) {
         ArrayList<muestras> listaMuestras = obtenerContenidoMues(ruta_archivo);
         listaMuestras.add(mues);
@@ -20,22 +20,20 @@ public class ControladorArchivoBinarioMues {
     }
     
     // Método para obtener todas las muestras del archivo binario
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") // lo use por recomendacion de chat
     public ArrayList<muestras> obtenerContenidoMues(String ruta_archivo) {
         ArrayList<muestras> listaMuestras = new ArrayList<>();
         try (ObjectInputStream entradaObjeto = new ObjectInputStream(new FileInputStream(ruta_archivo))) {
             listaMuestras = (ArrayList<muestras>) entradaObjeto.readObject();
         } catch (FileNotFoundException e) {
-            System.out.println("Archivo no encontrado, se creará uno nuevo.");
+          
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error al obtener el contenido: " + e.getMessage());
+          
         }
         return listaMuestras;
     }
     
-    
-            
-            
+              
     // Método para cargar datos desde un archivo CSV y guardarlos en un archivo binario
     public void leerCSV(String ruta_archivo){
         try {
@@ -45,7 +43,7 @@ public class ControladorArchivoBinarioMues {
             ControladorArchivoBinarioMues archivo = new ControladorArchivoBinarioMues();
             while ((linea = lector.readLine()) != null) {              
                 String[] contenido = linea.split(",");  
-                archivo.agregarContenidoMues("muestras.bin", new muestras(contenido[0],contenido[1],contenido[2])); //ruta del .bin donde se guardara lo leido del csv
+                archivo.agregarContenidoMues("muestras.bin", new muestras(contenido[0],contenido[1],"ingresado")); //ruta del .bin donde se guardara lo leido del csv
             }
             lector.close();
         } catch (Exception e) {
@@ -53,6 +51,8 @@ public class ControladorArchivoBinarioMues {
         }
     }
     
+    
+    //lo uso en la asignacion de experimetnos
     public muestras buscarMuestraPorCodigo(String codigo, String ruta_archivo) {
     ArrayList<muestras> listaMuestras = obtenerContenidoMues(ruta_archivo);
     for (muestras m : listaMuestras) {
