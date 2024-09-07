@@ -48,10 +48,7 @@ public class usuario {
         this.baseDatos.add(usuario);
     }
     
-    /**
-     * Metodo que se encarga de verificar si existe el usuario en la base de datos.
-     * Si retorna 'true' es porque existe el usuario.
-     */
+    
     public boolean verificarUsuario(String usuario, String contrasenia){
         for (usuario fila : this.baseDatos) {
             if(fila.getcodigo().equals(usuario) && fila.getContrasenia().equals(contrasenia)){

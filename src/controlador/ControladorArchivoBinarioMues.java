@@ -44,12 +44,7 @@ public class ControladorArchivoBinarioMues {
             lector.readLine();
             ControladorArchivoBinarioMues archivo = new ControladorArchivoBinarioMues();
             while ((linea = lector.readLine()) != null) {              
-                String[] contenido = linea.split(",");
-                System.out.println("Codigo: " + contenido[0]);
-                System.out.println("Nombre: " + contenido[1]);
-                System.out.println("Nombre: " + contenido[2]);
-   
-            
+                String[] contenido = linea.split(",");  
                 archivo.agregarContenidoMues("muestras.bin", new muestras(contenido[0],contenido[1],contenido[2])); //ruta del .bin donde se guardara lo leido del csv
             }
             lector.close();
@@ -68,9 +63,6 @@ public class ControladorArchivoBinarioMues {
     return null;
 }
 
-    private ArrayList<muestras> obtenerContenido(String ruta_archivo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     
     public void guardarContenidoMues(String rutaArchivo, ArrayList<muestras> listaMuestras) {

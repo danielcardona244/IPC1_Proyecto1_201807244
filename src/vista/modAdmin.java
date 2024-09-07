@@ -32,6 +32,9 @@ public class modAdmin extends javax.swing.JFrame {
         refrescarTabla();
         refrescarTabla2();
         refrescarTablaPatrones();
+      
+    
+        
         
         ControladorAsignacion controladorAsignacion = new ControladorAsignacion();
         controladorAsignacion.cargarComboBoxes(comboInves, comboMues);
@@ -46,13 +49,8 @@ public class modAdmin extends javax.swing.JFrame {
     tablaModelo.setRowCount(0);
     for (investigador invest : investigadores) {
         tablaModelo.addRow(new Object[]{
-            invest.getCodigo(), 
-            invest.getNombre(), 
-            invest.getGenero(), 
-            invest.getExperimento()
-        });
-        System.out.println("Código: " + invest.getCodigo() + ", Nombre: " + invest.getNombre() + 
-                           ", Género: " + invest.getGenero() + ", Experimento: " + invest.getExperimento());
+            invest.getCodigo(), invest.getNombre(), invest.getGenero(), invest.getExperimento()});
+
     }
 }
 
@@ -66,7 +64,7 @@ public class modAdmin extends javax.swing.JFrame {
         tablaModeloMues.setRowCount(0); // Limpia la tabla antes de agregar nuevas filas
         for (muestras mues : muestras) {
             tablaModeloMues.addRow(new Object[]{mues.getCodigo(), mues.getDescripcion(), mues.getEstado(), "ver"});
-            System.out.println("Código: " + mues.getCodigo() + ", Descripción: " + mues.getDescripcion() + ", Estado: " + mues.getEstado());
+ 
         }
         TableColumn columnaAcciones = jTable2.getColumnModel().getColumn(3);
         columnaAcciones.setCellRenderer(new RenderBttnVerMues());
@@ -92,10 +90,6 @@ public class modAdmin extends javax.swing.JFrame {
         columnaAcciones.setCellRenderer(new RenderBttnVerPatron());
         columnaAcciones.setCellEditor(new RenderBttnVerPatron());
     }
-
-
-        
-  
 
 
         
@@ -573,6 +567,7 @@ public class modAdmin extends javax.swing.JFrame {
         
         ControladorArchivoBinarioPatron archivo = new ControladorArchivoBinarioPatron();
         archivo.leerCSV("patrones.bin");
+        refrescarTablaPatrones();
         JOptionPane.showMessageDialog(null, "Investigadores cargados correctanebte");
         
 
@@ -608,6 +603,14 @@ public class modAdmin extends javax.swing.JFrame {
         archivo.leerCSV("muestras.bin");
         refrescarTabla2();
         JOptionPane.showMessageDialog(null, "muestras cargados correctanebte");
+        ControladorArchivoBinInves controlador = new ControladorArchivoBinInves();
+        
+
+        /*String rutaCSV = "C:\\Users\\cardo\\OneDrive\\Escritorio\\baseInves.csv";
+        String rutaBinario = "investigador.bin";
+        controlador.leerCSV(rutaCSV, rutaBinario);
+        refrescarTabla();
+        JOptionPane.showMessageDialog(this, "Datos cargados exitosamente", "Información", JOptionPane.INFORMATION_MESSAGE);*/
         
     }//GEN-LAST:event_bttnCargarMuActionPerformed
 

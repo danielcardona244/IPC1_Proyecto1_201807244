@@ -71,9 +71,7 @@ public class ControladorArchivoBinarioPatron {
             ControladorArchivoBinarioPatron archivo = new ControladorArchivoBinarioPatron();
             while ((linea = lector.readLine()) != null) {              
                 String[] contenido = linea.split(",");
-                System.out.println("Codigo: " + contenido[0]);
-                System.out.println("Nombre: " + contenido[1]);
-   
+ 
             
                 archivo.agregarContenidoPatrones("patrones.bin", new patrones(contenido[0],contenido[1])); //ruta del .bin donde se guardara lo leido del csv
             }

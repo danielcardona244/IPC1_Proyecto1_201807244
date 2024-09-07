@@ -1,6 +1,12 @@
 package vista;
 
 import controlador.ControladorArchivoBinarioMues;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import modelos.muestras;
 
@@ -32,6 +38,7 @@ public class crearMuestra extends javax.swing.JFrame {
         bttnCrearMu = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
+        bttnCargarP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,6 +59,13 @@ public class crearMuestra extends javax.swing.JFrame {
 
         jLabel5.setText("Patron");
 
+        bttnCargarP.setText("Cargar Patron");
+        bttnCargarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCargarPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,7 +85,8 @@ public class crearMuestra extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtCod, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                                     .addComponent(txtDescripcion)
-                                    .addComponent(txtEstado)))
+                                    .addComponent(txtEstado)
+                                    .addComponent(bttnCargarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(160, 160, 160)
                                 .addComponent(bttnCrearMu)))
@@ -98,9 +113,11 @@ public class crearMuestra extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(bttnCargarP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(bttnCrearMu)
                 .addGap(35, 35, 35))
         );
@@ -117,6 +134,28 @@ public class crearMuestra extends javax.swing.JFrame {
         txtDescripcion.setText("");
         txtEstado.setText("");
     }//GEN-LAST:event_bttnCrearMuActionPerformed
+
+    private void bttnCargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCargarPActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser fileChooser = new JFileChooser(); 
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            // Obtener el nombre del codigo
+            String fileName = txtCod.getText();
+            String projectRoot = System.getProperty("user.dir");
+            Path destinationPath = Paths.get(projectRoot, fileName);
+
+            try {
+                Files.copy(selectedFile.toPath(), destinationPath);
+                System.out.println("Archivo guardado en: " + destinationPath.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Error al copiar el archivo.");
+            }
+        }
+    }//GEN-LAST:event_bttnCargarPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +193,7 @@ public class crearMuestra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttnCargarP;
     private javax.swing.JButton bttnCrearMu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

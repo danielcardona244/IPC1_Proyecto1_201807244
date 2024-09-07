@@ -20,7 +20,7 @@ public class ControladorAsignacion {
     ArrayList<investigador> investigadores = controladorInves.obtenerContenido("investigador.bin");
     ArrayList<muestras> muestras = controladorMuestras.obtenerContenidoMues("muestras.bin");
     
-    System.out.println("Número de muestras: " + muestras.size());
+    
     
     jComboBoxInvestigadores.removeAllItems();
     jComboBoxMuestras.removeAllItems();
@@ -31,13 +31,13 @@ public class ControladorAsignacion {
     
     int contador = 0;
     for (muestras m : muestras) {
-        System.out.println("Código de muestra: " + m.getCodigo() + ", Estado: " + m.getEstado());
+      
         if ("en ingreso".equals(m.getEstado())) {
             jComboBoxMuestras.addItem(m.getCodigo());
             contador++;
         }
     }
-    System.out.println("Número de muestras añadidas al JComboBox: " + contador);
+  
 }
 
     public boolean asignarExperimento(String codigoInvestigador, String codigoMuestra) {

@@ -5,6 +5,12 @@
 package vista;
 
 import controlador.ControladorArchivoBinarioPatron;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import modelos.patrones;
 
@@ -56,6 +62,11 @@ public class crearPatron extends javax.swing.JFrame {
         jLabel4.setText("Patrón");
 
         jButton1.setText("Cargar Patrón");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         bttnCrearP.setText("Crear");
         bttnCrearP.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +150,27 @@ public class crearPatron extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_bttnCrearPActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            // Obtener el nombre del codigo
+            String fileName = txtCod.getText();
+            String projectRoot = System.getProperty("user.dir");
+            Path destinationPath = Paths.get(projectRoot, fileName);
+
+            try {
+                Files.copy(selectedFile.toPath(), destinationPath);
+                System.out.println("Archivo guardado en: " + destinationPath.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Error al copiar el archivo.");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
